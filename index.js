@@ -85,6 +85,26 @@ Car.prototype.fill = function (gallons) {
   return this.tank =  this.tank + gallons;
 }
 
+Car.prototype.drive = function (distance) {
+  if (distance > this.tank * this.milesPerGallon) {
+    this.odometer = this.odometer + this.tank * this.milesPerGallon;
+    this.tank = 0;
+    console.log(`I ran out of fuel at ${this.odometer} miles!`)
+  } else {
+    this.odometer = this.odometer + distance;
+    this.tank = this.tank - distance / this.milesPerGallon;
+  }
+  return this.odometer;
+}
+
+const batmobile = new Car('lambo', 15,);
+console.log(batmobile);
+batmobile.fill(10);
+console.log(batmobile.tank);
+batmobile.drive(160);
+console.log(batmobile.odometer);
+console.log(batmobile.tank);
+
 
 /*
   TASK 3
@@ -108,10 +128,10 @@ Baby.prototype.play = function () {
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. When this refers to the window, usually an error.
+  2. Implicit Binding when this refers to the object it is under.
+  3. New Binding is used for constructor functions, this refers to the object that it creates.
+  4. Explicit Binding is used when we use the apply or call methods to explicitly tell this what it is referring to.
 */
 
 
